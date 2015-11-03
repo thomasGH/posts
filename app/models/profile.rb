@@ -1,3 +1,3 @@
 class Profile < ActiveRecord::Base
-	belons_to :user
+	belongs_to :user
 end

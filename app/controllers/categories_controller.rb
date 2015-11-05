@@ -17,30 +17,25 @@ class CategoriesController < ApplicationController
 	def create
 		@category = Category.new(cat_params)
 
-		respond_to do |format|
-      if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @category.save
+      redirect_to @category, notice: 'Category was successfully created.'
+    else
+      render :new
     end
 	end
 
 	def update
-    respond_to do |format|
-      if @category.update(cat_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @category.update(cat_params)
+      redirect_to @category, notice: 'Category was successfully updated.'
+    else
+      render :edit
     end
 	end
 
 	def destroy
     @category.destroy
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-    end
+
+    redirect_to categories_url, notice: 'Category was successfully destroyed.'
 	end
 
 private

@@ -23,32 +23,27 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @comment.save
+      redirect_to @comment, notice: 'Comment was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /comments/1
   def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @comment.update(comment_params)
+      redirect_to @comment, notice: 'Comment was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /comments/1
   def destroy
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-    end
+    
+    redirect_to comments_url, notice: 'Comment was successfully destroyed.'
   end
 
   private

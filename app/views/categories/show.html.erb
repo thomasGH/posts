@@ -1,9 +1,16 @@
-<p id="notice"><%= notice %></p>
+<h1>Лента сообщений</h1>
 
-<p>
-  <strong>Body:</strong>
-	<%= @category.name %>
-</p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<% @posts.each do |post| %>
+
+  <h2><%= link_to post.title, post %></h2>
+
+	<% post.categories.each do |category| %>
+		<%= category.name %>
+	<% end %>
+
+  <p><%= truncate(post.body, length: 100, separator: ' ') { link_to "Читать далее", post } %></p>
+  <p><%= link_to 'Редактировать', edit_post_path(post) %> <%= link_to 'Удалить', post, method: :delete, data: { confirm: 'Вы уверены?' } %></p>
+<% end %>
+
+<%= link_to 'New Post', new_post_path %>

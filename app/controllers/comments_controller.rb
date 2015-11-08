@@ -21,10 +21,12 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
+    @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params)
+    @comment.post = @post
 
     if @comment.save
-      redirect_to @comment, notice: 'Comment was successfully created.'
+      redirect_to @post, notice: 'Comment was successfully created.'
     else
       render :new
     end
@@ -43,7 +45,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     
-    redirect_to comments_url, notice: 'Comment was successfully destroyed.'
+    redirect_to @comment.post, notice: 'Comment was successfully destroyed.'
   end
 
   private
@@ -54,6 +56,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:body)
+      params.require(:comment).permit(:body, :post_id)
     end
 end

@@ -2,12 +2,16 @@
   <%= render 'common/errors', object: @post %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label "Заголовок" %><br>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :body %><br>
+    <%= f.label "Содержание" %><br>
     <%= f.text_area :body %>
+  </div>
+  <div class="field">
+    <%= f.label :category_ids, 'Категории' %><br>
+    <%= f.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true } %>
   </div>
   <div class="actions">
     <%= f.submit %>

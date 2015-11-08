@@ -1,12 +1,12 @@
 <h1><%= @post.title %></h1>
 
 <div class="container">
-<% @post.categories.each do |category| %>
-<%= category.name %>
-<% end %>
+	<%= render 'common/categories', object: @post.categories %>
 </div>
 
 <p><%= @post.body %></p>
+
+<hr>
 
 <% unless @post.comments.empty? %>
 	<h3>Комментарии</h3>
@@ -19,5 +19,5 @@
 
 <%= render 'comments/form' %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Просмотр', edit_post_path(@post) %> |
+<%= link_to 'Назад', posts_path %>

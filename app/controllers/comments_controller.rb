@@ -22,8 +22,7 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     @post = Post.find(params[:post_id])
-    @comment = Comment.new(comment_params)
-    @comment.post = @post
+    @comment = @post.comments.new(comment_params)
 
     if @comment.save
       redirect_to @post, notice: 'Comment was successfully created.'

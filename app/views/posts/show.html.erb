@@ -1,7 +1,7 @@
 <h1><%= @post.title %></h1>
 
 <div class="container">
-	<%= render 'common/categories', object: @post.categories %>
+  <%= render 'categories/category' %>
 </div>
 
 <p><%= @post.body %></p>
@@ -9,12 +9,12 @@
 <hr>
 
 <% unless @post.comments.empty? %>
-	<h3>Комментарии</h3>
+  <h3>Комментарии</h3>
 
-	<%= render @post.comments %>
+  <%= render @post.comments %>
 
 <% else %>
-	<p>Комментариев пока нет. Оставьте комментарий первым</p>
+  <p>Комментариев пока нет. Оставьте комментарий первым</p>
 <% end %>
 
 <%= render 'comments/form' %>

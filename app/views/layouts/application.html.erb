@@ -54,10 +54,11 @@
             <li>
               <% if user_signed_in? %>
                 <%= link_to "Выйти", destroy_user_session_path, method: :delete %>
-                <span>Email: <%= current_user.email %></span>
+                User: <%= current_user.email %>
               <% else %>
-                <%= link_to "Войти", new_user_session_path %></li>
+                <%= link_to "Войти", new_user_session_path %>
               <% end %>
+            </li>
           </ul>
         </div>
       </div>

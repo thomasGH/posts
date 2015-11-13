@@ -1,3 +1,5 @@
+<%= @post.user.email %>
+
 <h1><%= @post.title %></h1>
 
 <div class="container">
@@ -7,6 +9,9 @@
 <p><%= @post.body %></p>
 
 <hr>
+  <% if user_signed_in? && current_user.id == @post.user.id %>
+    <p><%= link_to 'Редактировать', edit_post_path(@post) %> <%= link_to 'Удалить', @post, method: :delete, data: { confirm: 'Вы уверены?' } %></p>
+  <% end %>
 
 <% unless @post.comments.empty? %>
   <h3>Комментарии</h3>

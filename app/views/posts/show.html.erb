@@ -1,20 +1,25 @@
+<%= @post.user.email %>
+
 <h1><%= @post.title %></h1>
 
 <div class="container">
-	<%= render 'categories/category' %>
+  <%= render 'categories/category' %>
 </div>
 
 <p><%= @post.body %></p>
 
 <hr>
+  <% if current_user && current_user.author_of?(post) %>
+    <p><%= link_to 'Редактировать', edit_post_path(@post) %> <%= link_to 'Удалить', @post, method: :delete, data: { confirm: 'Вы уверены?' } %></p>
+  <% end %>
 
 <% unless @post.comments.empty? %>
-	<h3>Комментарии</h3>
+  <h3>Комментарии</h3>
 
-	<%= render @post.comments %>
+  <%= render @post.comments %>
 
 <% else %>
-	<p>Комментариев пока нет. Оставьте комментарий первым</p>
+  <p>Комментариев пока нет. Оставьте комментарий первым</p>
 <% end %>
 
 <%= render 'comments/form' %>

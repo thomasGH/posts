@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   # GET /posts
   def index
@@ -57,5 +58,12 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :body, category_ids: [])
+    end
+
+    def check_user
+      unless current_user.author_of?(@post) # CHECK IT!
+    #  unless user_signed_in? && current_user.id == @post.user.id
+        redirect_to posts_url, notice: 'У вас нет прав на выполнение этого действия.'
+      end
     end
 end

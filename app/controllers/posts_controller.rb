@@ -5,7 +5,11 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all
+    @posts = Post.reverse_order(:desc).published.all
+  end
+
+  def unpublished
+    @posts = Post.reverse_order(:desc).unpublished.all
   end
 
   # GET /posts/1

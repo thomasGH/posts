@@ -1,8 +1,7 @@
-<%= form_for(@category) do |f| %>
+<%= form_for([:admin, @category]) do |f| %>
   <%= render 'common/errors', object: @category %>  
 
   <div class="field">
-    <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
   <div class="actions">

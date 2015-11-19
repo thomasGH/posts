@@ -62,7 +62,7 @@ class CommentsController < ApplicationController
     end
 
     def check_user
-      unless user_signed_in? && current_user.id == @comment.user.id
+      unless user_signed_in? && (current_user.id == @comment.user.id || current_user.admin?)
         redirect_to posts_url, notice: 'У вас нет прав на выполнение этого действия.'
       end
     end

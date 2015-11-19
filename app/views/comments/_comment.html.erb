@@ -1,5 +1,5 @@
 <p><%= comment.body %> Автор: <%= comment.user.email %>
 
-<% if user_signed_in? && current_user.id == comment.user.id %>
+<% if current_user && (current_user.id == comment.user_id || current_user.admin?) %>
   <%= link_to 'Редактировать', edit_comment_path(comment) %> <%= link_to 'Удалить', comment, method: :delete, data: { confirm: 'Вы уверены?' } %>
 <% end %></p>

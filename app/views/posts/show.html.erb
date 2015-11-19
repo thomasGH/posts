@@ -9,9 +9,10 @@
 <p><%= @post.body %></p>
 
 <hr>
-  <% if current_user && current_user.author_of?(post) %>
-    <p><%= link_to 'Редактировать', edit_post_path(@post) %> <%= link_to 'Удалить', @post, method: :delete, data: { confirm: 'Вы уверены?' } %></p>
-  <% end %>
+
+<% if current_user && (current_user.id == @post.user_id || current_user.admin?) %>
+  <p><%= link_to 'Редактировать', edit_post_path(@post) %> <%= link_to 'Удалить', @post, method: :delete, data: { confirm: 'Вы уверены?' } %></p>
+<% end %>
 
 <% unless @post.comments.empty? %>
   <h3>Комментарии</h3>

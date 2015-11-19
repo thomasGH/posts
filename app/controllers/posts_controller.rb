@@ -61,8 +61,7 @@ class PostsController < ApplicationController
     end
 
     def check_user
-      unless current_user.author_of?(@post) # CHECK IT!
-    #  unless user_signed_in? && current_user.id == @post.user.id
+      unless current_user && (current_user.id == @post.user_id || current_user.admin?)
         redirect_to posts_url, notice: 'У вас нет прав на выполнение этого действия.'
       end
     end

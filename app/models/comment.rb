@@ -10,6 +10,6 @@ class Comment < ActiveRecord::Base
 	private
 
 	def send_notification
-		NotificationMailer.comment_notification(post.user, post, self).deiver_now
+		NotificationMailer.comment_notification(post.user, post, self).deliver_now
 	end
 end

@@ -4,6 +4,6 @@ class NotificationMailer < ApplicationMailer
 		@post = post
 		@comment = comment
 
-		mail(to: user.email, subject: 'Новый ответ на ваш пост')
+		mail(to: user.email, subject: 'Новый комментарий к вашему посту')
 	end
 end

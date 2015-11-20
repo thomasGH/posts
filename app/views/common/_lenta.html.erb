@@ -1,15 +1,19 @@
 <h1>Лента сообщений</h1>
 
 <% @posts.each do |post| %>
-  <div>
-    Автор: <%= post.user.email %>
-    <h2><%= link_to post.title, post %></h2>
+
+	<% if ! post.published && current_user && current_user.id == post.user_id %>
+
+	  <div>
+	    Автор: <%= post.user.email %>
+	    <h2><%= link_to post.title, post %></h2>
 
 
-	  <% @post = post %>
-	  <%= render 'categories/category' %>
+		  <% @post = post %>
+		  <%= render 'categories/category' %>
 
 
-    <p><%= truncate(post.body, length: 100, separator: ' ') { link_to "Читать далее", post } %></p>
-  </div>
+	    <p><%= truncate(post.body, length: 100, separator: ' ') { link_to "Читать далее", post } %></p>
+	  </div>
+  <% end %>
 <% end %>

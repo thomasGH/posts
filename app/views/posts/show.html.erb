@@ -11,7 +11,9 @@
 <hr>
 
 <% if current_user && (current_user.id == @post.user_id || current_user.admin?) %>
-  <p><%= link_to 'Редактировать', edit_post_path(@post) %> <%= link_to 'Удалить', @post, method: :delete, data: { confirm: 'Вы уверены?' } %></p>
+  <p><%= link_to 'Опубликовать', @post.update(published: true) %></p>
+  <p><%= link_to 'Редактировать', edit_post_path(@post) %></p>
+  <p><%= link_to 'Удалить', @post, method: :delete, data: { confirm: 'Вы уверены?' } %></p>
 <% end %>
 
 <% unless @post.comments.empty? %>

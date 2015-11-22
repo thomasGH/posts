@@ -18,6 +18,8 @@
   <p><%= link_to 'Удалить', @post, method: :delete, data: { confirm: 'Вы уверены?' } %></p>
 <% end %>
 
+<%= link_to 'Подписаться на пост', subscribe_post_path %>
+
 <% unless @post.comments.empty? %>
   <h3>Комментарии</h3>
 

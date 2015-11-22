@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :subscribe]
   before_action :check_user, only: [:edit, :update, :destroy]
 
   # GET /posts
@@ -56,6 +56,11 @@ class PostsController < ApplicationController
     @post.destroy
     
     redirect_to posts_url, notice: 'Post was successfully destroyed.'
+  end
+
+  def subscribe
+    @post.users << current_user
+    redirect_to @post, notice: 'Вы подписались на этот пост.'
   end
 
   private

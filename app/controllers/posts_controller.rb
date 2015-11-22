@@ -5,11 +5,16 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.reverse_order(:desc).published.all
+    @posts = Post.published.all
   end
 
   def unpublished
-    @posts = Post.reverse_order(:desc).unpublished.all
+    if current_user.admin?
+#    @posts = Post.reverse_order(:desc).unpublished.all
+      @posts = Post.unpublished.all
+    else
+      @posts = current_user.posts.unpublished.all
+    end
   end
 
   # GET /posts/1
@@ -54,19 +59,19 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:title, :body, :published, category_ids: [])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:post).permit(:title, :body, :published, category_ids: [])
+  end
 
-    def check_user
-      unless current_user && (current_user.id == @post.user_id || current_user.admin?)
-        redirect_to posts_url, notice: 'У вас нет прав на выполнение этого действия.'
-      end
+  def check_user
+    unless current_user && (current_user.id == @post.user_id || current_user.admin?)
+      redirect_to posts_url, notice: 'У вас нет прав на выполнение этого действия.'
     end
+  end
 end

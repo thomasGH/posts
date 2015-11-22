@@ -1,19 +1,17 @@
-<h1>Лента сообщений</h1>
-
 <% @posts.each do |post| %>
+  <div>
+    <h2><%= link_to post.title, post %></h2>
+    Автор: <%= post.user.email %>
 
-	<% if ! post.published && current_user && current_user.id == post.user_id %>
+    <% @post = post %>
+    <%= render 'categories/category' %>
 
-	  <div>
-	    Автор: <%= post.user.email %>
-	    <h2><%= link_to post.title, post %></h2>
+    <p><%= truncate(post.body, length: 100, separator: ' ') { link_to "Читать далее", post } %></p>
 
+    <% unless post.published %>
+      <%= render 'common/status_form' %>
+    <% end %>
 
-		  <% @post = post %>
-		  <%= render 'categories/category' %>
-
-
-	    <p><%= truncate(post.body, length: 100, separator: ' ') { link_to "Читать далее", post } %></p>
-	  </div>
-  <% end %>
+  </div>
+  <hr>
 <% end %>

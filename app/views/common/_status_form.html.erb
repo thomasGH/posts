@@ -1,0 +1,5 @@
+<%= form_for(@post) do |f| %>
+  <%= f.label :published, 'Опубликовать' %>
+  <%= f.check_box :published %><br>
+  <%= f.submit 'Изменить статус' %>
+<% end %>

@@ -14,22 +14,22 @@
 
   <%= render 'common/status_form' %>
 
-  <p><%= link_to 'Редактировать', edit_post_path(@post) %></p>
-  <p><%= link_to 'Удалить', @post, method: :delete, data: { confirm: 'Вы уверены?' } %></p>
+  <p><%= link_to t('common.edit'), edit_post_path(@post) %></p>
+  <p><%= link_to t('common.delete'), @post, method: :delete, data: { confirm: t('common.confirm') } %></p>
 <% end %>
 
-<%= link_to 'Подписаться на пост', subscribe_post_path %>
+<%= link_to t('.subscribe'), subscribe_post_path %>
 
 <% unless @post.comments.empty? %>
-  <h3>Комментарии</h3>
+  <h3><%= t('.comments') %></h3>
 
   <%= render @post.comments %>
 
 <% else %>
-  <p>Комментариев пока нет. Оставьте комментарий первым</p>
+  <p><%= t('.comments_not_yet') %></p>
 <% end %>
 
 <%= render 'comments/form' %>
 
-<%= link_to 'Просмотр', edit_post_path(@post) %> |
-<%= link_to 'Назад', posts_path %>
+<%= link_to t('common.show'), edit_post_path(@post) %> |
+<%= link_to t('common.back'), posts_path %>

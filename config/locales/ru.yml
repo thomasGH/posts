@@ -1,0 +1,19 @@
+ru:
+  common:
+    back: "Назад"
+    create: "Создать"
+    update: "Изменить"
+    show: "Просмотр"
+    edit: "Редактировать"
+    delete: "Удалить"
+    confirm: "Вы уверены?"
+  welcome:
+    index:
+      title: "Привет, Rails!"
+  posts:
+    show:
+      comments: "Комментарии"
+      comments_not_yet: "Комментариев пока нет. Оставьте комментарий первым"
+      subscribe: "Подписаться на пост"
+    form:
+      submit: '%{action} публикацию'

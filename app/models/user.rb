@@ -11,5 +11,5 @@ class User < ActiveRecord::Base
 	has_many :comments
 
 	has_many :subscribers_posts
-  has_many :subscribs, through: :subscribers_posts, source: :post
+  has_many :subscribed_posts, through: :subscribers_posts, source: :post
 end

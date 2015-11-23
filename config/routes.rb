@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get :unmoderated, on: :collection
     get :subscribe, on: :member
     resources :comments, shallow: true
+    resources :subscriptions, only: [:create, :destroy], shallow: true
   end
   
   resources :categories, only: :show

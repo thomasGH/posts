@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   has_many :tags, through: :tags_posts
 
   has_many :subscribers_posts
-  has_many :users, through: :subscribers_posts
+  has_many :subscribers, through: :subscribers_posts, source: :user
 
   belongs_to :user
 
@@ -17,4 +17,14 @@ class Post < ActiveRecord::Base
   scope :reverse_order, ->(order) { order(created_at: order) }
   scope :published, -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }
+  scope :moderated, -> { where(moderated: true) }
+  scope :unmoderated, -> { where(moderated: false) }
+
+  after_update :change_moderate_state
+
+  private
+
+  def change_moderate_state
+    NotificationMailer.moderate_state_notification(self).deliver_now
+  end
 end

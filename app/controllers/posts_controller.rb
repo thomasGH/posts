@@ -5,15 +5,22 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.published.all
+    @posts = Post.published.moderated.all
   end
 
   def unpublished
     if current_user.admin?
-#    @posts = Post.reverse_order(:desc).unpublished.all
       @posts = Post.unpublished.all
     else
       @posts = current_user.posts.unpublished.all
+    end
+  end
+
+  def unmoderated
+    if current_user.admin?
+      @posts = Post.unmoderated.all
+    else
+      @posts = current_user.posts.unmoderated.all
     end
   end
 
@@ -59,7 +66,7 @@ class PostsController < ApplicationController
   end
 
   def subscribe
-    @post.users << current_user
+    @post.subscribers << current_user
     redirect_to @post, notice: 'Вы подписались на этот пост.'
   end
 
@@ -71,7 +78,7 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:title, :body, :published, category_ids: [])
+    params.require(:post).permit(:title, :body, :published, :moderated, category_ids: [])
   end
 
   def check_user

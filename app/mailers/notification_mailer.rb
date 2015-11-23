@@ -16,4 +16,10 @@ class NotificationMailer < ApplicationMailer
       mail(to: user.email, subject: 'Новый комментарий к посту по подписке')
     end
   end
+
+  def moderate_state_notification(post)
+    @post = post
+
+    mail(to: post.user.email, subject: 'Статус вашего поста изменен')
+  end
 end

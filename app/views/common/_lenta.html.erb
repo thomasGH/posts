@@ -1,12 +1,12 @@
 <% @posts.each do |post| %>
   <div>
     <h2><%= link_to post.title, post %></h2>
-    Автор: <%= post.user.email %>
+    <%= t('common.author') %>: <%= post.user.email %>
 
     <% @post = post %>
     <%= render 'categories/category' %>
 
-    <p><%= truncate(post.body, length: 100, separator: ' ') { link_to "Читать далее", post } %></p>
+    <p><%= truncate(post.body, length: 100, separator: ' ') { link_to t('common.read_more'), post } %></p>
 
     <% unless post.published %>
       <%= render 'common/status_form' %>

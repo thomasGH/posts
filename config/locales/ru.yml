@@ -7,13 +7,62 @@ ru:
     edit: "Редактировать"
     delete: "Удалить"
     confirm: "Вы уверены?"
+    author: "Автор"
+    read_more: "Читать далее"
+    change_status: "Изменить статус"
+    can_not_be_saved: "Сообщение не может быть сохранено:"
+    categories: "Категории"
   welcome:
     index:
       title: "Привет, Rails!"
   posts:
+    create:
+      success: 'Сообщение было успешно создано.'
+    update:
+      success: 'Сообщение было успешно изменено.'
+    destroy:
+      success: 'Сообщение было успешно удалено.'
+    index:
+      title: "Все категории"
     show:
       comments: "Комментарии"
       comments_not_yet: "Комментариев пока нет. Оставьте комментарий первым"
       subscribe: "Подписаться на пост"
+    new:
+      title: "Новое сообщение (Черновик)"
+    edit:
+      title: "Редактирование сообщения"
+      deny: 'У вас нет прав на выполнение этого действия.'
     form:
       submit: '%{action} публикацию'
+    unmoderated:
+      title: "На модерации"
+    unpublished:
+      title: "Черновики"
+  comments:
+    create:
+      success: 'Комментарий был успешно создан.'
+    update:
+      success: 'Комментарий был успешно изменен.'
+    destroy:
+      success: 'Комментарий был успешно удален.'
+    show:
+      comment: "Комментарий"
+    edit:
+      title: "Редактирование комментария"
+      deny: 'У вас нет прав на выполнение этого действия.'
+    new:
+      title: "Новый комментарий"
+    form:
+      submit: '%{action} комментарий'
+  admin:
+    categories:
+      index:
+        title: "Список категорий"
+        new_category: "Создать категорию"
+      new:
+        title: "Новая категория"
+      edit:
+        title: "Редактирование категории"
+      form:
+        submit: '%{action} категорию'

@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to @post, notice: 'Comment was successfully created.'
+      redirect_to @post, notice: t('.success')
     else
       render :new
     end
@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   def update
     if @comment.update(comment_params)
-      redirect_to @comment, notice: 'Comment was successfully updated.'
+      redirect_to @comment, notice: t('.success')
     else
       render :edit
     end
@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     
-    redirect_to @comment.post, notice: 'Comment was successfully destroyed.'
+    redirect_to @comment.post, notice: t('.success')
   end
 
   private
@@ -63,7 +63,7 @@ class CommentsController < ApplicationController
 
     def check_user
       unless user_signed_in? && (current_user.id == @comment.user.id || current_user.admin?)
-        redirect_to posts_url, notice: 'У вас нет прав на выполнение этого действия.'
+        redirect_to posts_url, notice: t('.deny')
       end
     end
 end

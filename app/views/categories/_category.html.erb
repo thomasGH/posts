@@ -1,1 +1,1 @@
-<p>Категории: <%= @post.categories.pluck(:name).join(', ') %></p>
+<p><%= t('common.categories') %>: <%= @post.categories.pluck(:name).join(', ') %></p>

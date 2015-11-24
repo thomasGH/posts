@@ -7,6 +7,13 @@ ru:
       post:
         title: "Заголовок"
         body: "Текст"
+        category_ids: "Категории"
+        published: "Опубликовать"
+        moderated: "Принять"
+      comment:
+        body: "Комментарий"
+      category:
+        name: "Наименование"
     errors:
       messages:
         blank: "не может быть пустым"
@@ -15,3 +22,7 @@ ru:
           attributes:
             title:
               blank: "должен быть заполнен"
+        category:
+          attributes:
+            name:
+              taken: "уже существует"

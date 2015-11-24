@@ -1,7 +1,7 @@
 <%= form_for(@post) do |f| %>
-  <%= f.label :published, 'Опубликовать' %>
+  <%= f.label :published %>
   <%= f.check_box :published %><br>
-    <%= f.label :moderated, 'Принять' %>
+  <%= f.label :moderated %>
   <%= f.check_box :moderated %><br>
-  <%= f.submit 'Изменить статус' %>
+  <%= f.submit t('common.change_status') %>
 <% end %>

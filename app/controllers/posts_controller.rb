@@ -43,7 +43,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to @post, notice: t('.success')
     else
       render :new
     end
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
+      redirect_to @post, notice: t('.success')
     else
       render :edit
     end
@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     
-    redirect_to posts_url, notice: 'Post was successfully destroyed.'
+    redirect_to posts_url, notice: t('.success')
   end
 
   def subscribe
@@ -83,7 +83,7 @@ class PostsController < ApplicationController
 
   def check_user
     unless current_user && (current_user.id == @post.user_id || current_user.admin?)
-      redirect_to posts_url, notice: 'У вас нет прав на выполнение этого действия.'
+      redirect_to posts_url, notice: t('.deny')
     end
   end
 end

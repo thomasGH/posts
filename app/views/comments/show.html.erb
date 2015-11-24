@@ -1,7 +1,7 @@
 <p>
-  <strong>Body:</strong>
+  <strong><%= t('.comment') %>:</strong>
   <%= @comment.body %>
 </p>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', @comment.post %>
+<%= link_to t('common.edit'), edit_comment_path(@comment) %> |
+<%= link_to t('common.back'), @comment.post %>

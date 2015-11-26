@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :subscribe, :publish, :unpublish]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
   before_action :check_user, only: [:edit, :update, :destroy, :publish, :unpublish]
 
   # GET /posts
@@ -71,11 +71,6 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post, notice: t('.success')
     end
-  end
-
-  def subscribe
-    @post.subscribers << current_user
-    redirect_to @post, notice: 'Вы подписались на этот пост.'
   end
 
   private

@@ -18,7 +18,7 @@ ru:
     categories: "Категории"
   welcome:
     index:
-      title: "Привет, Rails!"
+      title: "Posts Application!"
   posts:
     create:
       success: 'Сообщение было успешно создано.'
@@ -32,6 +32,7 @@ ru:
       comments: "Комментарии"
       comments_not_yet: "Комментариев пока нет. Оставьте комментарий первым"
       subscribe: "Подписаться на пост"
+      unsubscribe: "Отписаться от поста"
     new:
       title: "Новое сообщение (Черновик)"
     edit:
@@ -59,6 +60,11 @@ ru:
       title: "Новый комментарий"
     form:
       submit: '%{action} комментарий'
+  subscriptions:
+    create:
+      subscribe: "Вы подписались на пост"
+    destroy:
+      unsubscribe: "Вы отписались от поста"
   admin:
     posts:
       index:

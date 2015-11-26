@@ -28,8 +28,6 @@
   <p><%= link_to t('common.delete'), @post, method: :delete, data: { confirm: t('common.confirm') } %></p>
 <% end %>
 
-<%= link_to t('.subscribe'), subscribe_post_path %>
-
 <% if @post.comments.empty? %>
   <p><%= t('.comments_not_yet') %></p>
 <% else %>

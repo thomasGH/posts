@@ -7,19 +7,13 @@ class NotificationMailer < ApplicationMailer
     mail(to: user.email, subject: 'Новый комментарий к вашему посту')
   end
 
-  def comment_distribution(users, post, comment)
-    users.each do |user|
-      @user = user
-      @post = post
-      @comment = comment
-
-      mail(to: user.email, subject: 'Новый комментарий к посту по подписке')
-    end
-  end
-
-  def moderate_state_notification(post)
+  def moderate_notification(post)
     @post = post
 
-    mail(to: post.user.email, subject: 'Статус вашего поста изменен')
+    if post.approved
+      mail(to: post.user.email, subject: 'Ваш пост подтвержден')
+    else
+      mail(to: post.user.email, subject: 'Ваш пост отклонен')
+    end
   end
 end

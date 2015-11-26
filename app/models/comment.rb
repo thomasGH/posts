@@ -14,8 +14,4 @@ class Comment < ActiveRecord::Base
 	def send_notification
 		NotificationMailer.comment_notification(post.user, post, self).deliver_now
 	end
-
-	def distribution
-	#	NotificationMailer.comment_distribution(post.users, post, self).deliver_now
-	end
 end

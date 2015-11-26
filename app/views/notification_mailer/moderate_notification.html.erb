@@ -1,0 +1,2 @@
+<p>Привет, <%= @post.user.email %></p>
+<p>Вашего пост "<%= link_to @post.title, @post %>", был <%= @post.approved ? 'принят' : 'отклонен' %> администратором.</p>

@@ -20,12 +20,7 @@ class Post < ActiveRecord::Base
   scope :approved,    -> { where(approved: true) }
   scope :disapproved,  -> { where(approved: false) }
 
-  after_update :change_moderate_state
-
-
-  private
-
-  def change_moderate_state
-  #  NotificationMailer.moderate_state_notification(self).deliver_now
+  def send_moderate_notification
+    NotificationMailer.moderate_notification(self).deliver_now
   end
 end

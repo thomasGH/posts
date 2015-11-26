@@ -32,6 +32,7 @@ class Admin::PostsController < Admin::BaseController
 
   def approve
     @post.approved = true
+    @post.send_moderate_notification
 
     if @post.save
       redirect_to disapproved_admin_posts_path, notice: t('.success')
@@ -41,6 +42,7 @@ class Admin::PostsController < Admin::BaseController
   def disapprove
     @post.approved = false
     @post.published = false
+    @post.send_moderate_notification
 
     if @post.save
       redirect_to @post, notice: t('.success')

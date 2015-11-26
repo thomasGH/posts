@@ -3,11 +3,8 @@ Rails.application.routes.draw do
   resources :posts do
     get :unpublished, on: :collection
     get :disapproved, on: :collection
-
     post :publish, on: :member
     post :unpublish, on: :member
-
-    get :subscribe, on: :member
     resources :comments, except: :index, shallow: true
     resources :subscriptions, only: [:create, :destroy], shallow: true
   end

@@ -1,4 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  
 	def index
 		@categories = Category.all
 	end
@@ -33,4 +35,14 @@ class Admin::CategoriesController < Admin::BaseController
 
     redirect_to admin_categories_url, notice: 'Category was successfully destroyed.'
 	end
+
+  protected
+
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
+  def cat_params
+    params.require(:category).permit(:name)
+  end
 end

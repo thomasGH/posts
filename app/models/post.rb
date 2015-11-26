@@ -15,16 +15,17 @@ class Post < ActiveRecord::Base
   validates :title, :body, presence: true
 
   scope :reverse_order, ->(order) { order(created_at: order) }
-  scope :published, -> { where(published: true) }
+  scope :published,   -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }
-  scope :moderated, -> { where(moderated: true) }
-  scope :unmoderated, -> { where(moderated: false) }
+  scope :approved,    -> { where(approved: true) }
+  scope :disapproved,  -> { where(approved: false) }
 
   after_update :change_moderate_state
+
 
   private
 
   def change_moderate_state
-    NotificationMailer.moderate_state_notification(self).deliver_now
+  #  NotificationMailer.moderate_state_notification(self).deliver_now
   end
 end

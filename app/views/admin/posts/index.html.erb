@@ -1,0 +1,15 @@
+<h1><%= t('.title') %></h1>
+
+<% @posts.each do |post| %>
+  <div>
+    <h2><%= link_to post.title, admin_post_path(post) %></h2>
+    <%= t('common.author') %>: <%= post.user.email %>
+
+    <% @post = post %>
+    <%= render 'categories/list_categories' %>
+
+    <p><%= truncate(post.body, length: 100, separator: ' ') { link_to t('common.read_more'), admin_post_path(post) } %></p>
+
+  </div>
+  <hr>
+<% end %>

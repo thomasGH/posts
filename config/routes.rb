@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
   resources :posts do
     get :unpublished, on: :collection
-    get :unmoderated, on: :collection
+    get :disapproved, on: :collection
+
+    post :publish, on: :member
+    post :unpublish, on: :member
+
     get :subscribe, on: :member
-    resources :comments, shallow: true
+    resources :comments, except: :index, shallow: true
     resources :subscriptions, only: [:create, :destroy], shallow: true
   end
   
@@ -13,6 +17,12 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :categories
     resources :users
+    resources :posts do
+      resources :comments, except: :index, shallow: true
+      get :disapproved, on: :collection
+      post :approve, on: :member
+      post :disapprove, on: :member
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

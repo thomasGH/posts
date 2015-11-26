@@ -6,6 +6,10 @@ ru:
     show: "Просмотр"
     edit: "Редактировать"
     delete: "Удалить"
+    publish: "Опубликовать"
+    unpublish: "Вернуть в черновики"
+    approve: "Принять пост"
+    disapprove: "Отклонить пост"
     confirm: "Вы уверены?"
     author: "Автор"
     read_more: "Читать далее"
@@ -35,7 +39,7 @@ ru:
       deny: 'У вас нет прав на выполнение этого действия.'
     form:
       submit: '%{action} публикацию'
-    unmoderated:
+    disapproved:
       title: "На модерации"
     unpublished:
       title: "Черновики"
@@ -56,6 +60,15 @@ ru:
     form:
       submit: '%{action} комментарий'
   admin:
+    posts:
+      index:
+        title: "Все посты"
+      disapproved:
+        title: "Неподтвержденные посты"
+      approve:
+        success: "Сообщение подтверждено"
+      disapprove:
+        success: "Сообщение отклонено"
     categories:
       index:
         title: "Список категорий"

@@ -1,0 +1,5 @@
+<% if @post.approved %>
+  <p><%= link_to t('common.disapprove'), disapprove_admin_post_path, method: :post %></p>
+<% else %>
+  <p><%= link_to t('common.approve'), approve_admin_post_path, method: :post %></p>
+<% end %>

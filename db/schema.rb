@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124142533) do
+ActiveRecord::Schema.define(version: 20151125073311) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20151124142533) do
     t.datetime "updated_at",                 null: false
     t.integer  "user_id"
     t.boolean  "published",  default: false
-    t.boolean  "moderated",  default: false
+    t.boolean  "approved",   default: false
   end
 
   create_table "profiles", force: :cascade do |t|

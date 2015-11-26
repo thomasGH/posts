@@ -1,0 +1,5 @@
+<% if @post.published %>
+  <p><%= link_to t('common.unpublish'), unpublish_post_path, method: :post %></p>
+<% else %>
+  <p><%= link_to t('common.publish'), publish_post_path, method: :post %></p>
+<% end %>

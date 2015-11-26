@@ -1,12 +1,15 @@
+<h1><%= t('.title') %></h1>
 <% @posts.each do |post| %>
   <div>
-    <h2><%= link_to post.title, post %></h2>
+    <h2><%= post.title %></h2>
     <%= t('common.author') %>: <%= post.user.email %>
 
     <% @post = post %>
     <%= render 'categories/list_categories' %>
 
-    <p><%= truncate(post.body, length: 100, separator: ' ') { link_to t('common.read_more'), post } %></p>
+    <p><%= post.body %></p>
+
+    <p><%= link_to t('common.approve'), approve_admin_post_path(post), method: :post %></p>
 
   </div>
   <hr>

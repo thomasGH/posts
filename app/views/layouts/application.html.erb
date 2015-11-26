@@ -48,17 +48,21 @@
         <a class="navbar-brand" href="/">Posts Application</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li>
-              <% if current_user && current_user.admin? %>
-                <%= link_to 'Админка', admin_categories_path %>
-                <%= link_to 'Пользователи', admin_users_path %>
-              <% end %>
-            </li>
+
             <li><%= link_to "Посты", posts_path  %></li>
+
             <% if current_user %>
+
               <li><%= link_to "Черновики", unpublished_posts_path  %></li>
-              <li><%= link_to "На модерации", unmoderated_posts_path  %></li>
+              <li><%= link_to "На модерации", disapproved_posts_path  %></li>
               <li><%= link_to 'Новое сообщение', new_post_path %></li>
+
+              <% if current_user.admin? %>
+
+                <li><%= link_to 'Админка', admin_posts_path %></li>
+
+              <% end %>
+
             <% end %>
             <li>
               <% if user_signed_in? %>

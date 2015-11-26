@@ -1,27 +1,19 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :subscribe]
-  before_action :check_user, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :subscribe, :publish, :unpublish]
+  before_action :check_user, only: [:edit, :update, :destroy, :publish, :unpublish]
 
   # GET /posts
   def index
-    @posts = Post.published.moderated.all
+    @posts = Post.published.approved.all
   end
 
   def unpublished
-    if current_user.admin?
-      @posts = Post.unpublished.all
-    else
       @posts = current_user.posts.unpublished.all
-    end
   end
 
-  def unmoderated
-    if current_user.admin?
-      @posts = Post.unmoderated.all
-    else
-      @posts = current_user.posts.unmoderated.all
-    end
+  def disapproved
+      @posts = current_user.posts.published.disapproved.all
   end
 
   # GET /posts/1
@@ -65,6 +57,22 @@ class PostsController < ApplicationController
     redirect_to posts_url, notice: t('.success')
   end
 
+  def publish
+    @post.published = true
+
+    if @post.save
+      redirect_to @post, notice: t('.success')
+    end
+  end
+
+  def unpublish
+    @post.published = false
+
+    if @post.save
+      redirect_to @post, notice: t('.success')
+    end
+  end
+
   def subscribe
     @post.subscribers << current_user
     redirect_to @post, notice: 'Вы подписались на этот пост.'
@@ -78,7 +86,7 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:title, :body, :published, :moderated, category_ids: [])
+    params.require(:post).permit(:title, :body, :published, :approved, category_ids: [])
   end
 
   def check_user

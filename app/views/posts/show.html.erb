@@ -24,8 +24,8 @@
 
 <% if current_user && (current_user.id == @post.user_id || current_user.admin?) %>
 
-  <p><%= link_to t('common.edit'), edit_post_path(@post) %></p>
-  <p><%= link_to t('common.delete'), @post, method: :delete, data: { confirm: t('common.confirm') } %></p>
+  <p><%= link_with_icon :pencil, edit_post_path(@post), title: t('common.edit') %></p>
+  <p><%= link_with_icon 'trash-o', @post, title: t('common.delete'), method: :delete, data: { confirm: t('common.confirm') } %></p>
 <% end %>
 
 <% if current_user %>

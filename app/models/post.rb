@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   has_many :tags_posts
   has_many :tags, through: :tags_posts
 
-  has_many :subscribers_posts
+  has_many :subscribers_posts, dependent: :destroy
   has_many :subscribers, through: :subscribers_posts, source: :user
 
   belongs_to :user

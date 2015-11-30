@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
 	has_many :comments
 
-	has_many :subscribers_posts
+	has_many :subscribers_posts, dependent: :destroy
   has_many :subscribed_posts, through: :subscribers_posts, source: :post
 
   def subscribe_to(post)

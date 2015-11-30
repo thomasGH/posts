@@ -30,7 +30,7 @@
 
 <% if current_user %>
   <% if current_user.subscribers_posts.where(post: @post).present? %>
-    <%= link_to t('.unsubscribe'), "#", method: :delete %>
+    <%= link_to t('.unsubscribe'), subscription_path, method: :delete %>
   <% else %>
     <%= link_to t('.subscribe'), post_subscriptions_path(@post), method: :post %>
   <% end %>

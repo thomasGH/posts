@@ -7,7 +7,7 @@ class Comment < ActiveRecord::Base
 
 	after_save :send_notification
 
-	after_save :distribution
+#	after_save :distribution
 
 	private
 

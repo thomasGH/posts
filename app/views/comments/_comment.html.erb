@@ -1,5 +1,6 @@
 <p><%= comment.body %> <%= t('common.author') %>: <%= comment.user.email %>
 
 <% if current_user && (current_user.id == comment.user_id || current_user.admin?) %>
-  <%= link_to link_to t('common.edit'), edit_comment_path(comment) %> <%= link_to t('common.delete'), comment, method: :delete, data: { confirm: t('common.confirm') } %>
+  <%= link_with_icon :pencil, edit_comment_path(comment), title: t('common.edit') %>
+  <%= link_with_icon 'trash-o', comment, title: t('common.delete'), method: :delete, data: { confirm: t('common.confirm') } %>
 <% end %></p>

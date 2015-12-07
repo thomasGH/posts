@@ -1,12 +1,41 @@
 $(document).ready(function() {
-	$('form.new_post').submit(function() {
-		alert('Отправка формы');
-		var post_title = $(this).find('#post_title');
-		var title = post_title.val();
-		if (post_title == '' || post_title == undefined) {
-			post_title.addClass('field_with_errors')
-			alert('Введите название поста');
-			return false;
-		}
-	})
-})
+	$('a.edit_post_title_link').click(function() {
+		
+    var post_id = $(this).data('postId');
+    var form = $('#edit_post_title_' + post_id);
+    var title = $('#post_title_' + post_id);
+
+    if ($(this).hasClass('cancel')) {
+
+      $(this).html('<i class="fa fa-pencil"></i>');
+      $(this).removeClass('cancel');
+
+    } else {
+
+      $(this).html('<i class="fa fa-pencil">Отменить</i>');
+      $(this).addClass('cancel');
+    }
+    form.toggle();
+    title.togle();
+	});
+
+  $('a.edit_post_body_link').click(function() {
+
+    var post_id = $(this).data('postId');
+    var form = $('#edit_post_body_' + post_id);
+    var body = $('#post_body_' + post_id);
+
+    if ($(this).hasClass('cancel')) {
+
+      $(this).html('<i class="fa fa-pencil">Редактировать</i>');
+      $(this).removeClass('cancel');
+
+    } else {
+
+      $(this).html('<i class="fa fa-pencil">Отменить</i>');
+      $(this).addClass('cancel');
+    }
+    form.toggle();
+    body.togle();
+  });
+});

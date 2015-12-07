@@ -11,7 +11,7 @@
           <%= render 'form', category: category, hidden: true %>
         </td>
         <td><%= link_to t('common.show'), category %></td>
-        <td><%= link_with_icon :pencil, edit_admin_category_path(category), title: t('common.edit'), class: 'edit_category_link', data: { category_id: category.id } %></td>
+        <td><%= link_with_icon :pencil, '#', title: t('common.edit'), class: 'edit_category_link', data: { category_id: category.id } %></td>
         <td><%= link_with_icon 'trash-o', [:admin, category], title: t('common.delete'), method: :delete, data: { confirm: t('common.confirm') } %></td>
       </tr>
     <% end %>

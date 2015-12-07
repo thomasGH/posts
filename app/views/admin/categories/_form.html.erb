@@ -1,13 +1,6 @@
 <% hidden = false unless local_assigns[:hidden] %>
 <%= form_for [:admin, category], html: { style: "display: #{hidden ? 'none' : 'block'}" } do |f| %>
   <%= render 'common/errors', object: category %>  
-
-  <div class="field">
-  	<%= f.label :name %>
     <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-  	<% f.submit %>
-<!--    <%= f.submit t('.submit', action: category.new_record? ? t('common.create') : t('common.update')) %> /-->
-  </div>
+  	<%= f.submit %>
 <% end %>

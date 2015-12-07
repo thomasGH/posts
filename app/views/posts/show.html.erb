@@ -1,13 +1,33 @@
 <%= @post.user.email %>
 
-<h1><%= @post.title %></h1>
+<h1><%= @post.title %>
+
+<% if current_user && (current_user.id == @post.user_id || current_user.admin?) %>
+  <%= link_with_icon :pencil, '#', class: 'edit_post_title_link', data: { post_id: @post.id } %></h1>
+
+  <% hidden_title = true unless local_assigns[:hidden] %>
+  <%= form_for @post, html: { style: "display: #{hidden_title ? 'none' : 'block'}", class: 'edit_post_title' } do |f| %>
+    <%= render 'common/errors', object: @post %>  
+      <%= f.text_field :title %>
+      <%= f.submit %>
+  <% end %>
+<% end %>
 
 <div class="container">
   <%= render 'categories/list_categories' %>
 </div>
 
 <p><%= @post.body %></p>
+<% if current_user && (current_user.id == @post.user_id || current_user.admin?) %>
+  <%= link_with_icon :pencil, '#', title: t('common.edit'), class: 'edit_post_body_link', data: { post_id: @post.id } %>
 
+  <% hidden_body = true unless local_assigns[:hidden] %>
+  <%= form_for @post, html: { style: "display: #{hidden_body ? 'none' : 'block'}", class: 'edit_post_body' } do |f| %>
+    <%= render 'common/errors', object: @post %>  
+      <%= f.text_area :body, size: "60x12" %>
+      <%= f.submit %>
+  <% end %>
+<% end %>
 <hr>
 
 <% if current_user && (current_user.id == @post.user_id || current_user.admin?) %>
@@ -24,7 +44,6 @@
 
 <% if current_user && (current_user.id == @post.user_id || current_user.admin?) %>
 
-  <p><%= link_with_icon :pencil, edit_post_path(@post), title: t('common.edit') %></p>
   <p><%= link_with_icon 'trash-o', @post, title: t('common.delete'), method: :delete, data: { confirm: t('common.confirm') } %></p>
 <% end %>
 

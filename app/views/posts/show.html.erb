@@ -1,38 +1,40 @@
 <%= @post.user.email %>
 
-<h1><%= @post.title %>
-
-<% if current_user && (current_user.id == @post.user_id || current_user.admin?) %>
-  <%= link_with_icon :pencil, '#', class: 'edit_post_title_link', data: { post_id: @post.id } %></h1>
-
-  <% hidden_title = true unless local_assigns[:hidden] %>
-  <%= form_for @post, html: { style: "display: #{hidden_title ? 'none' : 'block'}", class: 'edit_post_title' } do |f| %>
-    <%= render 'common/errors', object: @post %>  
-      <%= f.text_field :title %>
-      <%= f.submit %>
-  <% end %>
-<% end %>
+<h1><%= @post.title %></h1>
 
 <div class="container">
-  <%= render 'categories/list_categories' %>
+ <%= render 'categories/list_categories' %>
 </div>
 
-<p><%= @post.body %></p>
 <% if current_user && (current_user.id == @post.user_id || current_user.admin?) %>
-  <%= link_with_icon :pencil, '#', title: t('common.edit'), class: 'edit_post_body_link', data: { post_id: @post.id } %>
 
-  <% hidden_body = true unless local_assigns[:hidden] %>
-  <%= form_for @post, html: { style: "display: #{hidden_body ? 'none' : 'block'}", class: 'edit_post_body' } do |f| %>
-    <%= render 'common/errors', object: @post %>  
+  <%= form_for @post, html: { style: "display: none", class: 'edit_post' } do |f| %>
+    <%= render 'common/errors', object: @post %>
+
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, size: "60" %>
+    </div>
+
+    <div class="field">
       <%= f.text_area :body, size: "60x12" %>
+    </div>
+
+    <div class="button">
       <%= f.submit %>
+    </div>
   <% end %>
 <% end %>
+
+<p class="body"><%= @post.body %></p>
+
 <hr>
 
 <% if current_user && (current_user.id == @post.user_id || current_user.admin?) %>
 
   <%= render 'common/publish' %>
+
+  <%= link_with_icon :pencil, '#', title: t('common.edit'), class: 'edit_post_link', data: { post_id: @post.id } %>
 
 <% end %>
 

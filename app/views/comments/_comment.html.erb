@@ -1,6 +1,21 @@
-<p><%= comment.body %> <%= t('common.author') %>: <%= comment.user.email %>
+<div class="comment_body">
+  <%= comment.body %> <%= t('common.author') %>: <%= comment.user.email %>
+</div>
 
 <% if current_user && (current_user.id == comment.user_id || current_user.admin?) %>
-  <%= link_with_icon :pencil, edit_comment_path(comment), title: t('common.edit') %>
+
+<%= form_for [@post, @comment], html: { style: "display: none", class: 'edit_comment' } do |f| %>
+  <%= render 'common/errors', object: @comment %>
+
+  <div class="field">
+    <%= f.text_area :body, size: "60x6" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_with_icon :pencil, '#', title: t('common.edit'), class: 'edit_comment_link', data: { comment_id: comment.id } %>
   <%= link_with_icon 'trash-o', comment, title: t('common.delete'), method: :delete, data: { confirm: t('common.confirm') } %>
-<% end %></p>
+<% end %>

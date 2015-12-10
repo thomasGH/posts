@@ -16,6 +16,6 @@ $(document).ready(function() {
       $(this).addClass('cancel');
     }
     form.toggle();
-    title.togle();
+    title.toggle();
   })
 })

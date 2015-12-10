@@ -1,10 +1,8 @@
 $(document).ready(function() {
-	$('a.edit_post_link').click(function() {
-		
-    var post_id = $(this).data('postId');
-    var form = $('#edit_post_' + post_id);
-    var title = $('h1');
-    var body = $('p.body');
+  $('a.edit_comment_link').click(function() {
+
+    var form = $('form.edit_comment');
+    var body = $('div.comment_body');
 
     if ($(this).hasClass('cancel')) {
 
@@ -17,7 +15,6 @@ $(document).ready(function() {
       $(this).addClass('cancel');
     }
     form.toggle();
-    title.toggle();
     body.toggle();
-	});
+  });
 });
